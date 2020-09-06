@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2020 at 06:56 AM
+-- Generation Time: Sep 06, 2020 at 08:46 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.32
 
@@ -32,7 +32,8 @@ CREATE TABLE `agent_ratings` (
   `user_id` tinyint(4) DEFAULT NULL,
   `agent_id` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `rate` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -79,6 +80,21 @@ CREATE TABLE `apartment_features` (
   `name_en` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `apartment_ratings`
+--
+
+CREATE TABLE `apartment_ratings` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `apartment_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `rate` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -147,17 +163,17 @@ CREATE TABLE `data_rows` (
 --
 
 INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, `required`, `browse`, `read`, `edit`, `add`, `delete`, `details`, `order`) VALUES
-(1, 1, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
-(2, 1, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2),
-(3, 1, 'email', 'text', 'Email', 1, 1, 1, 1, 1, 1, NULL, 3),
-(4, 1, 'password', 'password', 'Password', 1, 0, 0, 1, 1, 0, NULL, 4),
-(5, 1, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 0, 0, 0, NULL, 5),
-(6, 1, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, NULL, 6),
-(7, 1, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 7),
-(8, 1, 'avatar', 'image', 'Avatar', 0, 1, 1, 1, 1, 1, NULL, 8),
-(9, 1, 'user_belongsto_role_relationship', 'relationship', 'Role', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":0}', 10),
-(10, 1, 'user_belongstomany_role_relationship', 'relationship', 'Roles', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', 11),
-(11, 1, 'settings', 'hidden', 'Settings', 0, 0, 0, 0, 0, 0, NULL, 12),
+(1, 1, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, '{}', 1),
+(2, 1, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, '{}', 2),
+(3, 1, 'email', 'text', 'Email', 1, 1, 1, 1, 1, 1, '{}', 3),
+(4, 1, 'password', 'password', 'Password', 1, 0, 0, 1, 1, 0, '{}', 4),
+(5, 1, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 0, 0, 0, '{}', 5),
+(6, 1, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 13),
+(7, 1, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 12),
+(8, 1, 'avatar', 'image', 'Avatar', 0, 1, 1, 1, 1, 1, '{}', 7),
+(9, 1, 'user_belongsto_role_relationship', 'relationship', 'Role', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":\"0\",\"taggable\":\"0\"}', 9),
+(10, 1, 'user_belongstomany_role_relationship', 'relationship', 'Roles', 0, 1, 1, 1, 1, 0, '{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}', 10),
+(11, 1, 'settings', 'hidden', 'Settings', 0, 0, 0, 0, 0, 0, '{}', 11),
 (12, 2, 'id', 'number', 'ID', 1, 0, 0, 0, 0, 0, NULL, 1),
 (13, 2, 'name', 'text', 'Name', 1, 1, 1, 1, 1, 1, NULL, 2),
 (14, 2, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, NULL, 3),
@@ -167,15 +183,15 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (18, 3, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, NULL, 3),
 (19, 3, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, NULL, 4),
 (20, 3, 'display_name', 'text', 'Display Name', 1, 1, 1, 1, 1, 1, NULL, 5),
-(21, 1, 'role_id', 'text', 'Role', 1, 1, 1, 1, 1, 1, NULL, 9),
+(21, 1, 'role_id', 'text', 'Role', 0, 1, 1, 1, 1, 1, '{}', 8),
 (22, 5, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(23, 5, 'apartment_id', 'text', 'Apartment Id', 1, 1, 1, 1, 1, 1, '{}', 2),
-(24, 5, 'user_id', 'text', 'User Id', 1, 1, 1, 1, 1, 1, '{}', 3),
-(25, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
-(26, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(23, 5, 'apartment_id', 'text', 'Apartment Id', 1, 0, 1, 0, 0, 0, '{}', 2),
+(24, 5, 'user_id', 'text', 'User Id', 1, 0, 1, 0, 0, 0, '{}', 4),
+(25, 5, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
+(26, 5, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
 (27, 6, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (28, 6, 'name_en', 'text', 'Name En', 1, 1, 1, 1, 1, 1, '{}', 2),
-(29, 6, 'country_id', 'text', 'Country Id', 1, 1, 1, 1, 1, 1, '{}', 3),
+(29, 6, 'country_id', 'text', 'Country Id', 1, 0, 1, 0, 0, 0, '{}', 3),
 (30, 6, 'created_at', 'timestamp', 'Created At', 1, 1, 1, 1, 0, 1, '{}', 4),
 (31, 6, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
 (32, 7, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
@@ -184,15 +200,15 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (35, 7, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
 (36, 7, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
 (37, 8, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(38, 8, 'user_id', 'text', 'User Id', 1, 1, 1, 1, 1, 1, '{}', 2),
-(39, 8, 'apartments_id', 'text', 'Apartments Id', 1, 1, 1, 1, 1, 1, '{}', 3),
+(38, 8, 'user_id', 'text', 'User Id', 1, 0, 1, 0, 0, 0, '{}', 2),
+(39, 8, 'apartments_id', 'text', 'Apartments Id', 1, 0, 1, 0, 0, 0, '{}', 3),
 (40, 8, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
 (41, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
 (42, 9, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(43, 9, 'user_id', 'text', 'User Id', 0, 1, 1, 1, 1, 1, '{}', 2),
-(44, 9, 'agent_id', 'text', 'Agent Id', 0, 1, 1, 1, 1, 1, '{}', 3),
-(45, 9, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
-(46, 9, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(43, 9, 'user_id', 'text', 'User Id', 0, 0, 1, 0, 0, 0, '{}', 2),
+(44, 9, 'agent_id', 'text', 'Agent Id', 0, 0, 1, 0, 0, 0, '{}', 4),
+(45, 9, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
+(46, 9, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
 (47, 10, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (48, 10, 'name_en', 'text', 'Name En', 1, 1, 1, 1, 1, 1, '{}', 2),
 (49, 10, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 3),
@@ -203,28 +219,28 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (54, 11, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 4),
 (55, 12, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (56, 12, 'title_en', 'text', 'Title En', 0, 1, 1, 1, 1, 1, '{}', 2),
-(57, 12, 'apartment_type_id', 'text', 'Apartment Type Id', 1, 1, 1, 1, 1, 1, '{}', 3),
-(58, 12, 'business_type_id', 'text', 'Business Type Id', 1, 1, 1, 1, 1, 1, '{}', 4),
-(59, 12, 'description_en', 'text', 'Description En', 0, 1, 1, 1, 1, 1, '{}', 5),
-(60, 12, 'number_of_rooms', 'text', 'Number Of Rooms', 0, 1, 1, 1, 1, 1, '{}', 6),
-(61, 12, 'number_of_bathroom', 'text', 'Number Of Bathroom', 1, 1, 1, 1, 1, 1, '{}', 7),
-(62, 12, 'address_en', 'text', 'Address En', 0, 1, 1, 1, 1, 1, '{}', 8),
-(63, 12, 'is_deal_done', 'text', 'Is Deal Done', 1, 1, 1, 1, 1, 1, '{}', 9),
-(64, 12, 'is_approve', 'text', 'Is Approve', 1, 1, 1, 1, 1, 1, '{}', 10),
-(65, 12, 'number_of_cars_at_lot_size', 'text', 'Number Of Cars At Lot Size', 0, 1, 1, 1, 1, 1, '{}', 11),
-(66, 12, 'area', 'text', 'Area', 0, 1, 1, 1, 1, 1, '{}', 12),
-(67, 12, 'lot_size', 'text', 'Lot Size', 0, 1, 1, 1, 1, 1, '{}', 13),
-(68, 12, 'price', 'text', 'Price', 0, 1, 1, 1, 1, 1, '{}', 14),
-(69, 12, 'user_id', 'text', 'User Id', 1, 1, 1, 1, 1, 1, '{}', 15),
-(70, 12, 'floor', 'text', 'Floor', 0, 1, 1, 1, 1, 1, '{}', 16),
-(71, 12, 'available_date', 'text', 'Available Date', 0, 1, 1, 1, 1, 1, '{}', 17),
-(72, 12, 'township_id', 'text', 'Township Id', 1, 1, 1, 1, 1, 1, '{}', 18),
-(73, 12, 'apartment_features_id', 'text', 'Apartment Features Id', 0, 1, 1, 1, 1, 1, '{}', 19),
-(74, 12, 'img_id', 'text', 'Img Id', 0, 1, 1, 1, 1, 1, '{}', 20),
-(75, 12, 'google_map_address', 'text', 'Google Map Address', 0, 1, 1, 1, 1, 1, '{}', 21),
-(76, 12, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 22),
-(77, 12, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 23),
-(78, 12, 'deleted_at', 'timestamp', 'Deleted At', 0, 1, 1, 1, 1, 1, '{}', 24),
+(57, 12, 'apartment_type_id', 'text', 'Apartment Type Id', 1, 0, 0, 0, 0, 0, '{}', 3),
+(58, 12, 'business_type_id', 'text', 'Business Type Id', 1, 0, 1, 0, 0, 0, '{}', 5),
+(59, 12, 'description_en', 'text', 'Description En', 0, 1, 1, 1, 1, 1, '{}', 7),
+(60, 12, 'number_of_rooms', 'text', 'Number Of Rooms', 0, 1, 1, 1, 1, 1, '{}', 8),
+(61, 12, 'number_of_bathroom', 'text', 'Number Of Bathroom', 1, 1, 1, 1, 1, 1, '{}', 9),
+(62, 12, 'address_en', 'text', 'Address En', 0, 1, 1, 1, 1, 1, '{}', 10),
+(63, 12, 'is_deal_done', 'checkbox', 'Is Deal Done', 1, 1, 1, 1, 1, 1, '{}', 11),
+(64, 12, 'is_approve', 'checkbox', 'Is Approve', 1, 1, 1, 1, 1, 1, '{}', 12),
+(65, 12, 'number_of_cars_at_lot_size', 'text', 'Number Of Cars At Lot Size', 0, 1, 1, 1, 1, 1, '{}', 13),
+(66, 12, 'area', 'text', 'Area', 0, 1, 1, 1, 1, 1, '{}', 14),
+(67, 12, 'lot_size', 'text', 'Lot Size', 0, 1, 1, 1, 1, 1, '{}', 15),
+(68, 12, 'price', 'text', 'Price', 0, 1, 1, 1, 1, 1, '{}', 16),
+(69, 12, 'user_id', 'text', 'User Id', 1, 0, 1, 0, 0, 0, '{}', 17),
+(70, 12, 'floor', 'text', 'Floor', 0, 1, 1, 1, 1, 1, '{}', 19),
+(71, 12, 'available_date', 'date', 'Available Date', 0, 1, 1, 1, 1, 1, '{}', 20),
+(72, 12, 'township_id', 'text', 'Township Id', 1, 0, 1, 0, 0, 0, '{}', 21),
+(73, 12, 'apartment_features_id', 'text', 'Apartment Features Id', 0, 0, 1, 0, 0, 0, '{}', 23),
+(74, 12, 'img_id', 'text', 'Img Id', 0, 0, 1, 0, 0, 0, '{}', 25),
+(75, 12, 'google_map_address', 'text', 'Google Map Address', 0, 1, 1, 1, 1, 1, '{}', 27),
+(76, 12, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 1, '{}', 28),
+(77, 12, 'updated_at', 'timestamp', 'Updated At', 0, 0, 1, 0, 0, 0, '{}', 29),
+(78, 12, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 1, 0, 0, 0, '{}', 30),
 (79, 13, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (80, 13, 'name_en', 'text', 'Name En', 1, 1, 1, 1, 1, 1, '{}', 2),
 (81, 13, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 3),
@@ -234,10 +250,10 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (85, 14, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 3),
 (86, 14, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 4),
 (87, 16, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(88, 16, 'user_id', 'text', 'User Id', 1, 1, 1, 1, 1, 1, '{}', 2),
-(89, 16, 'apartment_id', 'text', 'Apartment Id', 1, 1, 1, 1, 1, 1, '{}', 3),
-(90, 16, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 4),
-(91, 16, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5),
+(88, 16, 'user_id', 'text', 'User Id', 1, 0, 1, 0, 0, 0, '{}', 2),
+(89, 16, 'apartment_id', 'text', 'Apartment Id', 1, 0, 1, 0, 0, 0, '{}', 4),
+(90, 16, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 6),
+(91, 16, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 7),
 (92, 17, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (93, 17, 'url', 'text', 'Url', 1, 1, 1, 1, 1, 1, '{}', 2),
 (94, 17, 'avator_url', 'text', 'Avator Url', 0, 1, 1, 1, 1, 1, '{}', 3),
@@ -245,7 +261,32 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (96, 17, 'preview_url', 'text', 'Preview Url', 0, 1, 1, 1, 1, 1, '{}', 5),
 (97, 17, 'default_url', 'text', 'Default Url', 0, 1, 1, 1, 1, 1, '{}', 6),
 (98, 17, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 7),
-(99, 17, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8);
+(99, 17, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8),
+(100, 12, 'apartment_hasone_apartment_type_relationship', 'relationship', 'apartment_types', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\ApartmentType\",\"table\":\"apartment_types\",\"type\":\"belongsTo\",\"column\":\"apartment_type_id\",\"key\":\"id\",\"label\":\"name_en\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 4),
+(102, 12, 'apartment_belongsto_business_type_relationship', 'relationship', 'business_types', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\BusinessType\",\"table\":\"business_types\",\"type\":\"belongsTo\",\"column\":\"apartment_type_id\",\"key\":\"id\",\"label\":\"name_en\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 6),
+(103, 12, 'apartment_belongsto_user_relationship', 'relationship', 'users', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 18),
+(104, 12, 'apartment_hasmany_apartment_feature_relationship', 'relationship', 'apartment_features', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\ApartmentFeature\",\"table\":\"apartment_features\",\"type\":\"hasMany\",\"column\":\"name_en\",\"key\":\"id\",\"label\":\"name_en\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 24),
+(105, 12, 'apartment_belongsto_township_relationship', 'relationship', 'townships', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Township\",\"table\":\"townships\",\"type\":\"belongsTo\",\"column\":\"township_id\",\"key\":\"id\",\"label\":\"name_en\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 22),
+(106, 12, 'apartment_hasmany_image_relationship', 'relationship', 'images', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Image\",\"table\":\"images\",\"type\":\"hasMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"default_url\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 26),
+(107, 7, 'township_belongsto_state_relationship', 'relationship', 'states', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\State\",\"table\":\"states\",\"type\":\"belongsTo\",\"column\":\"states_id\",\"key\":\"id\",\"label\":\"name_en\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 6),
+(108, 6, 'state_belongsto_country_relationship', 'relationship', 'countries', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Country\",\"table\":\"countries\",\"type\":\"belongsTo\",\"column\":\"country_id\",\"key\":\"id\",\"label\":\"name_en\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 6),
+(109, 8, 'transaction_belongsto_apartment_relationship', 'relationship', 'apartments', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Apartment\",\"table\":\"apartments\",\"type\":\"belongsTo\",\"column\":\"apartments_id\",\"key\":\"id\",\"label\":\"title_en\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 6),
+(110, 8, 'transaction_belongsto_user_relationship', 'relationship', 'users', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
+(111, 16, 'favourite_belongsto_user_relationship', 'relationship', 'users', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
+(112, 16, 'favourite_belongsto_apartment_relationship', 'relationship', 'apartments', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Apartment\",\"table\":\"apartments\",\"type\":\"belongsTo\",\"column\":\"apartment_id\",\"key\":\"id\",\"label\":\"title_en\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(113, 5, 'rating_belongsto_apartment_relationship', 'relationship', 'apartments', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Apartment\",\"table\":\"apartments\",\"type\":\"belongsTo\",\"column\":\"apartment_id\",\"key\":\"id\",\"label\":\"title_en\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
+(114, 5, 'rating_belongsto_user_relationship', 'relationship', 'users', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(115, 1, 'email_verified_at', 'timestamp', 'Email Verified At', 0, 1, 1, 1, 1, 1, '{}', 6),
+(116, 9, 'agent_rating_belongsto_user_relationship', 'relationship', 'User', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
+(117, 9, 'agent_rating_belongsto_user_relationship_1', 'relationship', 'Agent', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"agent_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(118, 18, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(119, 18, 'apartment_id', 'text', 'Apartment Id', 1, 0, 1, 0, 0, 0, '{}', 2),
+(120, 18, 'user_id', 'text', 'User Id', 1, 0, 1, 0, 0, 0, '{}', 5),
+(121, 18, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 1, 0, 1, '{}', 7),
+(122, 18, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8),
+(123, 18, 'rate', 'text', 'Rate', 0, 1, 1, 1, 1, 1, '{}', 4),
+(124, 18, 'apartment_rating_belongsto_apartment_relationship', 'relationship', 'apartments', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Apartment\",\"table\":\"apartments\",\"type\":\"belongsTo\",\"column\":\"apartment_id\",\"key\":\"id\",\"label\":\"title_en\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
+(125, 18, 'apartment_rating_belongsto_user_relationship', 'relationship', 'users', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\User\",\"table\":\"users\",\"type\":\"belongsTo\",\"column\":\"user_id\",\"key\":\"id\",\"label\":\"name\",\"pivot_table\":\"agent_ratings\",\"pivot\":\"0\",\"taggable\":\"0\"}', 6);
 
 -- --------------------------------------------------------
 
@@ -276,21 +317,22 @@ CREATE TABLE `data_types` (
 --
 
 INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `display_name_plural`, `icon`, `model_name`, `policy_name`, `controller`, `description`, `generate_permissions`, `server_side`, `details`, `created_at`, `updated_at`) VALUES
-(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', '', 1, 0, NULL, '2020-09-06 09:00:53', '2020-09-06 09:00:53'),
+(1, 'users', 'users', 'User', 'Users', 'voyager-person', 'TCG\\Voyager\\Models\\User', 'TCG\\Voyager\\Policies\\UserPolicy', 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController', NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}', '2020-09-06 09:00:53', '2020-09-06 11:28:26'),
 (2, 'menus', 'menus', 'Menu', 'Menus', 'voyager-list', 'TCG\\Voyager\\Models\\Menu', NULL, '', '', 1, 0, NULL, '2020-09-06 09:00:53', '2020-09-06 09:00:53'),
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2020-09-06 09:00:53', '2020-09-06 09:00:53'),
-(5, 'ratings', 'ratings', 'Rating', 'Ratings', 'voyager-star', 'App\\Rating', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:27:42', '2020-09-06 09:27:42'),
-(6, 'states', 'states', 'State', 'States', 'voyager-location', 'App\\State', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:28:16', '2020-09-06 09:28:16'),
-(7, 'townships', 'townships', 'Township', 'Townships', 'voyager-location', 'App\\Township', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:28:26', '2020-09-06 09:28:26'),
-(8, 'transactions', 'transactions', 'Transaction', 'Transactions', 'voyager-window-list', 'App\\Transaction', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:29:15', '2020-09-06 09:29:15'),
-(9, 'agent_ratings', 'agent-ratings', 'Agent Rating', 'Agent Ratings', 'voyager-star', 'App\\AgentRating', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:29:45', '2020-09-06 09:29:45'),
+(5, 'ratings', 'ratings', 'Rating', 'Ratings', 'voyager-star', 'App\\Rating', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-06 09:27:42', '2020-09-06 11:32:48'),
+(6, 'states', 'states', 'State', 'States', 'voyager-location', 'App\\State', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-06 09:28:16', '2020-09-06 11:19:07'),
+(7, 'townships', 'townships', 'Township', 'Townships', 'voyager-location', 'App\\Township', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-06 09:28:26', '2020-09-06 11:09:50'),
+(8, 'transactions', 'transactions', 'Transaction', 'Transactions', 'voyager-window-list', 'App\\Transaction', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-06 09:29:15', '2020-09-06 11:19:43'),
+(9, 'agent_ratings', 'agent-ratings', 'Agent Rating', 'Agent Ratings', 'voyager-star', 'App\\AgentRating', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-06 09:29:45', '2020-09-06 11:31:43'),
 (10, 'apartment_features', 'apartment-features', 'Apartment Feature', 'Apartment Features', 'voyager-lighthouse', 'App\\ApartmentFeature', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:30:12', '2020-09-06 09:30:12'),
-(11, 'apartment_types', 'apartment-types', 'Apartment Type', 'Apartment Types', 'voyager-home', 'App\\ApartmentType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:30:31', '2020-09-06 09:30:31'),
-(12, 'apartments', 'apartments', 'Apartment', 'Apartments', 'voyager-lighthouse', 'App\\Apartment', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:30:47', '2020-09-06 09:30:47'),
+(11, 'apartment_types', 'apartment-types', 'Apartment Type', 'Apartment Types', 'voyager-home', 'App\\ApartmentType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-06 09:30:31', '2020-09-06 10:47:27'),
+(12, 'apartments', 'apartments', 'Apartment', 'Apartments', 'voyager-lighthouse', 'App\\Apartment', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-06 09:30:47', '2020-09-06 11:24:37'),
 (13, 'business_types', 'business-types', 'Business Type', 'Business Types', 'voyager-people', 'App\\BusinessType', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:31:46', '2020-09-06 09:31:46'),
 (14, 'countries', 'countries', 'Country', 'Countries', 'voyager-location', 'App\\Country', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:32:16', '2020-09-06 09:32:16'),
-(16, 'favourites', 'favourites', 'Favourite', 'Favourites', 'voyager-heart', 'App\\Favourite', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:33:10', '2020-09-06 09:33:10'),
-(17, 'images', 'images', 'Image', 'Images', 'voyager-camera', 'App\\Image', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:33:51', '2020-09-06 09:33:51');
+(16, 'favourites', 'favourites', 'Favourite', 'Favourites', 'voyager-heart', 'App\\Favourite', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-06 09:33:10', '2020-09-06 11:22:00'),
+(17, 'images', 'images', 'Image', 'Images', 'voyager-camera', 'App\\Image', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2020-09-06 09:33:51', '2020-09-06 09:33:51'),
+(18, 'apartment_ratings', 'apartment-ratings', 'Apartment Rating', 'Apartment Ratings', NULL, 'App\\ApartmentRating', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-09-06 11:37:19', '2020-09-06 11:41:38');
 
 -- --------------------------------------------------------
 
@@ -387,33 +429,32 @@ CREATE TABLE `menu_items` (
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
 (1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2020-09-06 09:00:53', '2020-09-06 09:00:53', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 7, '2020-09-06 09:00:53', '2020-09-06 09:50:18', 'voyager.media.index', NULL),
+(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 6, '2020-09-06 09:00:53', '2020-09-06 10:06:43', 'voyager.media.index', NULL),
 (3, 1, 'Users', '', '_self', 'voyager-person', NULL, 28, 1, '2020-09-06 09:00:53', '2020-09-06 09:49:17', 'voyager.users.index', NULL),
 (4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, 28, 2, '2020-09-06 09:00:53', '2020-09-06 09:49:39', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 10, '2020-09-06 09:00:53', '2020-09-06 09:50:18', NULL, NULL),
+(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2020-09-06 09:00:53', '2020-09-06 11:45:44', NULL, NULL),
 (6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 1, '2020-09-06 09:00:53', '2020-09-06 09:37:48', 'voyager.menus.index', NULL),
 (7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 2, '2020-09-06 09:00:53', '2020-09-06 09:37:48', 'voyager.database.index', NULL),
 (8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 3, '2020-09-06 09:00:53', '2020-09-06 09:37:48', 'voyager.compass.index', NULL),
 (9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2020-09-06 09:00:53', '2020-09-06 09:37:48', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 9, '2020-09-06 09:00:53', '2020-09-06 09:50:18', 'voyager.settings.index', NULL),
+(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 8, '2020-09-06 09:00:53', '2020-09-06 10:06:43', 'voyager.settings.index', NULL),
 (11, 1, 'Hooks', '', '_self', 'voyager-hook', NULL, 5, 5, '2020-09-06 09:00:53', '2020-09-06 09:37:48', 'voyager.hooks', NULL),
-(12, 1, 'Ratings', '', '_self', 'voyager-star', NULL, 26, 1, '2020-09-06 09:27:42', '2020-09-06 09:44:58', 'voyager.ratings.index', NULL),
-(13, 1, 'States', '', '_self', 'voyager-location', NULL, 24, 2, '2020-09-06 09:28:16', '2020-09-06 09:40:29', 'voyager.states.index', NULL),
-(14, 1, 'Townships', '', '_self', 'voyager-location', NULL, 24, 1, '2020-09-06 09:28:27', '2020-09-06 09:40:27', 'voyager.townships.index', NULL),
+(13, 1, 'States', '', '_self', 'voyager-location', NULL, 24, 2, '2020-09-06 09:28:16', '2020-09-06 11:45:50', 'voyager.states.index', NULL),
+(14, 1, 'Townships', '', '_self', 'voyager-location', NULL, 24, 1, '2020-09-06 09:28:27', '2020-09-06 11:45:50', 'voyager.townships.index', NULL),
 (15, 1, 'Transactions', '', '_self', 'voyager-window-list', NULL, 27, 2, '2020-09-06 09:29:15', '2020-09-06 09:47:13', 'voyager.transactions.index', NULL),
-(16, 1, 'Agent Ratings', '', '_self', 'voyager-star', NULL, 26, 3, '2020-09-06 09:29:45', '2020-09-06 09:49:17', 'voyager.agent-ratings.index', NULL),
-(17, 1, 'Apartment Features', '', '_self', 'voyager-lighthouse', NULL, 25, 3, '2020-09-06 09:30:12', '2020-09-06 09:50:09', 'voyager.apartment-features.index', NULL),
-(18, 1, 'Apartment Types', '', '_self', 'voyager-home', NULL, 25, 2, '2020-09-06 09:30:31', '2020-09-06 09:50:09', 'voyager.apartment-types.index', NULL),
-(19, 1, 'Apartments', '', '_self', 'voyager-lighthouse', NULL, 25, 1, '2020-09-06 09:30:47', '2020-09-06 09:41:45', 'voyager.apartments.index', NULL),
+(16, 1, 'Agent Ratings', '', '_self', 'voyager-star', NULL, 26, 4, '2020-09-06 09:29:45', '2020-09-06 11:45:50', 'voyager.agent-ratings.index', NULL),
+(17, 1, 'Apartment Features', '', '_self', 'voyager-lighthouse', NULL, 25, 1, '2020-09-06 09:30:12', '2020-09-06 11:45:38', 'voyager.apartment-features.index', NULL),
+(18, 1, 'Apartment Types', '', '_self', 'voyager-home', NULL, 25, 2, '2020-09-06 09:30:31', '2020-09-06 11:45:38', 'voyager.apartment-types.index', NULL),
 (20, 1, 'Business Types', '', '_self', 'voyager-people', NULL, 27, 1, '2020-09-06 09:31:46', '2020-09-06 09:47:09', 'voyager.business-types.index', NULL),
-(21, 1, 'Countries', '', '_self', 'voyager-location', NULL, 24, 3, '2020-09-06 09:32:16', '2020-09-06 09:49:39', 'voyager.countries.index', NULL),
-(22, 1, 'Favourites', '', '_self', 'voyager-heart', NULL, 26, 2, '2020-09-06 09:33:10', '2020-09-06 09:44:59', 'voyager.favourites.index', NULL),
-(23, 1, 'Images', '', '_self', 'voyager-camera', NULL, NULL, 2, '2020-09-06 09:33:51', '2020-09-06 09:49:58', 'voyager.images.index', NULL),
-(24, 1, 'Location', '', '_self', 'voyager-location', '#000000', NULL, 6, '2020-09-06 09:39:51', '2020-09-06 09:50:18', NULL, ''),
-(25, 1, 'Apartments', '', '_self', 'voyager-home', '#000000', NULL, 3, '2020-09-06 09:40:59', '2020-09-06 09:49:58', NULL, ''),
-(26, 1, 'Rating and Favourite', '', '_self', 'voyager-smile', '#000000', NULL, 5, '2020-09-06 09:44:43', '2020-09-06 09:49:58', NULL, ''),
-(27, 1, 'Business', '', '_self', 'voyager-bar-chart', '#000000', NULL, 4, '2020-09-06 09:46:48', '2020-09-06 09:49:58', NULL, ''),
-(28, 1, 'User and Role', '', '_self', 'voyager-people', '#000000', NULL, 8, '2020-09-06 09:48:33', '2020-09-06 09:50:18', NULL, '');
+(21, 1, 'Countries', '', '_self', 'voyager-location', NULL, 24, 3, '2020-09-06 09:32:16', '2020-09-06 11:45:50', 'voyager.countries.index', NULL),
+(22, 1, 'Favourites', '', '_self', 'voyager-heart', NULL, 26, 3, '2020-09-06 09:33:10', '2020-09-06 11:45:50', 'voyager.favourites.index', NULL),
+(23, 1, 'Images', '', '_self', 'voyager-camera', NULL, 25, 3, '2020-09-06 09:33:51', '2020-09-06 11:45:38', 'voyager.images.index', NULL),
+(24, 1, 'Location', '', '_self', 'voyager-location', '#000000', NULL, 5, '2020-09-06 09:39:51', '2020-09-06 10:06:43', NULL, ''),
+(25, 1, 'Apartments', '', '_self', 'voyager-home', '#000000', NULL, 2, '2020-09-06 09:40:59', '2020-09-06 10:06:43', NULL, ''),
+(26, 1, 'Rating and Favourite', '', '_self', 'voyager-smile', '#000000', NULL, 4, '2020-09-06 09:44:43', '2020-09-06 10:06:43', NULL, ''),
+(27, 1, 'Business', '', '_self', 'voyager-bar-chart', '#000000', NULL, 3, '2020-09-06 09:46:48', '2020-09-06 10:06:43', NULL, ''),
+(28, 1, 'User and Role', '', '_self', 'voyager-people', '#000000', NULL, 7, '2020-09-06 09:48:33', '2020-09-06 10:06:43', NULL, ''),
+(29, 1, 'Apartment Ratings', '', '_self', NULL, NULL, 26, 2, '2020-09-06 11:37:19', '2020-09-06 11:45:50', 'voyager.apartment-ratings.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -597,7 +638,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (83, 'read_images', 'images', '2020-09-06 09:33:51', '2020-09-06 09:33:51'),
 (84, 'edit_images', 'images', '2020-09-06 09:33:51', '2020-09-06 09:33:51'),
 (85, 'add_images', 'images', '2020-09-06 09:33:51', '2020-09-06 09:33:51'),
-(86, 'delete_images', 'images', '2020-09-06 09:33:51', '2020-09-06 09:33:51');
+(86, 'delete_images', 'images', '2020-09-06 09:33:51', '2020-09-06 09:33:51'),
+(87, 'browse_apartment_ratings', 'apartment_ratings', '2020-09-06 11:37:19', '2020-09-06 11:37:19'),
+(88, 'read_apartment_ratings', 'apartment_ratings', '2020-09-06 11:37:19', '2020-09-06 11:37:19'),
+(89, 'edit_apartment_ratings', 'apartment_ratings', '2020-09-06 11:37:19', '2020-09-06 11:37:19'),
+(90, 'add_apartment_ratings', 'apartment_ratings', '2020-09-06 11:37:19', '2020-09-06 11:37:19'),
+(91, 'delete_apartment_ratings', 'apartment_ratings', '2020-09-06 11:37:19', '2020-09-06 11:37:19');
 
 -- --------------------------------------------------------
 
@@ -782,20 +828,6 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ratings`
---
-
-CREATE TABLE `ratings` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `apartment_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `roles`
 --
 
@@ -894,6 +926,23 @@ CREATE TABLE `transactions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `translations`
+--
+
+CREATE TABLE `translations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `table_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `column_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `foreign_key` int(10) UNSIGNED NOT NULL,
+  `locale` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -957,6 +1006,12 @@ ALTER TABLE `apartments`
 -- Indexes for table `apartment_features`
 --
 ALTER TABLE `apartment_features`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `apartment_ratings`
+--
+ALTER TABLE `apartment_ratings`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1059,12 +1114,6 @@ ALTER TABLE `permission_role`
   ADD KEY `permission_role_role_id_index` (`role_id`);
 
 --
--- Indexes for table `ratings`
---
-ALTER TABLE `ratings`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -1135,6 +1184,12 @@ ALTER TABLE `apartment_features`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `apartment_ratings`
+--
+ALTER TABLE `apartment_ratings`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `apartment_types`
 --
 ALTER TABLE `apartment_types`
@@ -1156,13 +1211,13 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1192,7 +1247,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1210,13 +1265,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
-
---
--- AUTO_INCREMENT for table `ratings`
---
-ALTER TABLE `ratings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `roles`
