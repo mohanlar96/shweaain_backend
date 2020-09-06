@@ -11,7 +11,9 @@
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.0",
+        "laravel/passport": "^9.3",
         "laravel/tinker": "^1.0",
+        "moontoast/math": "^1.2",
         "tcg/voyager": "^1.4"
     },
     "require-dev": {

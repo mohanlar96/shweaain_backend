@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="dbdc3074-3c95-46c9-b023-87f41945430a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -175,5 +178,9 @@
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="2080" y="172" width="585" height="801" key="find.popup/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1599365675726" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1599408898750">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599408898750" />
   </component>
 </project>
