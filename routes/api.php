@@ -13,12 +13,21 @@ use Laravel\Passport\Passport;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::middleware(['cors', 'api' ])->group(function () {
+    Route::get('/test', function () {
+        return "Hi Thai success";
+    });
 
-Route::middleware('cors:auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::get('/home/details','Api\HomeController@home');
+
+
+
 });
 
+Route::middleware(['cors', 'api' ,'auth'])->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-Route::middleware('cors:api')->get('/test',function(){
-    return "Hi Thai success";
+
 });
