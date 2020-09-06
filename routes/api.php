@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Laravel\Passport\Passport;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('cors:auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::middleware('cors:api')->get('/test',function(){
+    return "Hi Thai success";
 });

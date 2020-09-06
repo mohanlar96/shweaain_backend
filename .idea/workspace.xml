@@ -174,13 +174,17 @@
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="2103" y="318" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1599365780497" />
+    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1599426949266">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599426949266" />
     <state x="2080" y="172" width="585" height="801" key="find.popup" timestamp="1599365675726">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
     <state x="2080" y="172" width="585" height="801" key="find.popup/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1599365675726" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1599408898750">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1599426731193">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599408898750" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599426731193" />
   </component>
 </project>

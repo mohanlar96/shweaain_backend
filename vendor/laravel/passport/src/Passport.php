@@ -186,6 +186,7 @@ class Passport
 
         $defaultOptions = [
             'prefix' => 'oauth',
+            'middleware'=>'cors',
             'namespace' => '\Laravel\Passport\Http\Controllers',
         ];
 
