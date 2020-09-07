@@ -14,10 +14,7 @@ use Laravel\Passport\Passport;
 |
 */
 Route::middleware(['cors', 'api' ])->group(function () {
-    Route::get('/test', function () {
-        return "Hi Thai success";
-    });
-
+    Route::get('/user','Api\HomeController@user');
     Route::get('/home','Api\HomeController@home');
     Route::POST('/home/search','Api\HomeController@search');
     Route::get('/property/{id}','Api\HomeController@getAProperty');
@@ -28,10 +25,6 @@ Route::middleware(['cors', 'api' ])->group(function () {
 
 });
 
-Route::middleware(['cors', 'api' ,'auth'])->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+//Route::middleware(['cors','auth:api'])->get('/user', 'Api\HomeController@user');
 
 
-});

@@ -18,6 +18,11 @@ use Laminas\Diactoros\Response\JsonResponse;
 
 class HomeController extends Controller
 {
+    public function user()
+    {
+        return response()->json(
+            ['user' =>User::find(1)] );
+    }
     public function home()
     {
         return response()->json(
