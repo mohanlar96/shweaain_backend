@@ -18,7 +18,11 @@ Route::middleware(['cors', 'api' ])->group(function () {
         return "Hi Thai success";
     });
 
-    Route::get('/home/details','Api\HomeController@home');
+    Route::get('/home','Api\HomeController@home');
+    Route::POST('/home/search','Api\HomeController@search');
+    Route::get('/property/{id}','Api\HomeController@getAProperty');
+
+
 
 
 
