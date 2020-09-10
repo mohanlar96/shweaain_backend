@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\AgentRating;
 use App\Apartment;
+use App\ApartmentFeature;
 use App\ApartmentRating;
 use App\ApartmentType;
 use App\BusinessType;
@@ -37,7 +38,7 @@ class HomeController extends Controller
                 'ApartmentType'=>ApartmentType::all(),
                 'BusinessType'=>BusinessType::all(),
                 'Apartments'=>Apartment::with(['user','apartmentType','businessType','township','images'])->get(),
-
+                'ApartmentFeatures'=>ApartmentFeature::all(),
             ]
         );
     }

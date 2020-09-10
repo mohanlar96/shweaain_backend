@@ -157,7 +157,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../shweaain" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -184,7 +184,8 @@
       <workItem from="1599361900766" duration="4857000" />
       <workItem from="1599431027001" duration="632000" />
       <workItem from="1599481322524" duration="4263000" />
-      <workItem from="1599494273806" duration="1563000" />
+      <workItem from="1599494273806" duration="2229000" />
+      <workItem from="1599770399185" duration="885000" />
     </task>
     <servers />
   </component>
@@ -200,6 +201,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599426949266" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1599771281732">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599771281732" />
     <state x="2080" y="172" width="585" height="801" key="find.popup" timestamp="1599365675726">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
