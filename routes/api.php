@@ -16,7 +16,7 @@ use Laravel\Passport\Passport;
 Route::middleware(['cors', 'api' ])->group(function () {
     Route::get('/user','Api\HomeController@user');
     Route::get('/home','Api\HomeController@home');
-    Route::POST('/home/search','Api\HomeController@search');
+    Route::get('/home/search','Api\HomeController@search');
     Route::get('/property/{id}','Api\HomeController@getAProperty');
 
 
