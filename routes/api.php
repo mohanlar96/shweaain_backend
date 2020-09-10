@@ -17,12 +17,9 @@ Route::middleware(['cors', 'api' ])->group(function () {
     Route::get('/user','Api\HomeController@user');
     Route::get('/home','Api\HomeController@home');
     Route::get('/home/search','Api\HomeController@search');
-    Route::get('/property/{id}','Api\HomeController@getAProperty');
-
-
-
-
-
+    Route::get('/property/business','Api\HomeController@madeRentSell');
+    Route::get('/property/{id}','Api\HomeController@getDetails');
+    Route::post('/house/insert','Api\HomeController@postHome');
 });
 
 //Route::middleware(['cors','auth:api'])->get('/user', 'Api\HomeController@user');

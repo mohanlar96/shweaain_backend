@@ -157,7 +157,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../shweaain" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -186,6 +186,7 @@
       <workItem from="1599481322524" duration="4263000" />
       <workItem from="1599494273806" duration="2229000" />
       <workItem from="1599770399185" duration="885000" />
+      <workItem from="1599778238464" duration="41000" />
     </task>
     <servers />
   </component>
@@ -201,17 +202,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="118" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599426949266" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1599771281732">
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1599778266467">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599771281732" />
-    <state x="2080" y="172" width="585" height="801" key="find.popup" timestamp="1599365675726">
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599778266467" />
+    <state x="1375" y="-21" width="1153" height="716" maximized="true" key="dock-window-1" timestamp="1599776730437">
       <screen x="1366" y="0" width="1920" height="1040" />
     </state>
-    <state x="2080" y="172" width="585" height="801" key="find.popup/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1599365675726" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1599771595280">
+    <state x="1375" y="-21" width="1153" height="716" maximized="true" key="dock-window-1/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599776730437" />
+    <state x="508" y="120" width="555" height="561" key="find.popup" timestamp="1599776973705">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599771595280" />
+    <state x="508" y="120" width="555" height="561" key="find.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599776973705" />
+    <state x="2080" y="172" width="585" height="801" key="find.popup/0.0.1366.728/1366.0.1920.1040@1366.0.1920.1040" timestamp="1599365675726" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1599776875631">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1599776875631" />
   </component>
 </project>

@@ -24,6 +24,8 @@ class HomeController extends Controller
         return response()->json(
             ['user' =>User::find(1)] );
     }
+
+
     public function home()
     {
         return response()->json(
@@ -43,29 +45,44 @@ class HomeController extends Controller
         );
     }
 
-    public function search(){
-
-
+    public function search()
+    {
         return response()->json(
             [
-                'apartment'=>Apartment::where('id',2)->with(['user','apartmentType','businessType','township','images'])->get()
+                'apartment'=>Apartment::take(2)->with(['user','apartmentType','businessType','township','images'])->get()
             ]
         );
-
-
-
-
     }
-    public function getAProperty(){
 
-       $id= request('id');
+
+    public function getDetails()
+    {
+        $id= request('id');
         return response()->json(
             [
                 'apartment'=>Apartment::where('id',$id)->with(['user','apartmentType','businessType','township','images'])->get()
             ]
         );
+    }
 
+    public function postHome()
+    {
 
+       $id= request('id');
+        return response()->json(
+            [
+                'response'=>"Success, Thank you for the new Property"
+            ]
+        );
+    }
 
+    public function madeRentSell()
+    {
+
+        return response()->json(
+            [
+                'response'=>'success'
+            ]
+        );
     }
 }
