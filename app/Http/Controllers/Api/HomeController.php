@@ -46,6 +46,13 @@ class HomeController extends Controller
     public function search(){
 
 
+        return response()->json(
+            [
+                'apartment'=>Apartment::where('id',2)->with(['user','apartmentType','businessType','township','images'])->get()
+            ]
+        );
+
+
 
 
     }
