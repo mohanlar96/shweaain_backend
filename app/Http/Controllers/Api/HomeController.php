@@ -47,9 +47,20 @@ class HomeController extends Controller
 
     public function search()
     {
+        $apartments= Apartment::where('apartment_type_id',request('houseType'))
+            ->where('number_of_bathroom',request('numberOfBathRoom'))
+            ->where('floor',request('numberOfFloor'))
+            ->where('business_type_id',request('target'))
+            ->whereBetween('area',[request('priceMin'),request('priceMax')])
+            ->whereBetween('price',[request('priceMin'),request('priceMax')])
+            ->whereBetween('year_build',[request('yearBuiltMin'), request('yearBuiltMax')])
+            ->sortBy(request('sortBy'))->with(['user','apartmentType','businessType','township','images'])
+            ->with(['user','apartmentType','businessType','township','images'])
+            ->get();
+
         return response()->json(
             [
-                'apartment'=>Apartment::take(2)->with(['user','apartmentType','businessType','township','images'])->get()
+                'apartments'=>$apartments
             ]
         );
     }
@@ -68,7 +79,16 @@ class HomeController extends Controller
     public function postHome()
     {
 
-       $id= request('id');
+        $apartment = new Apartment;
+        $apartment->township_id = request('city');
+//        $apartment->name=request(''  );
+        $apartment->apartment_type_id=request('houseType');
+        $apartment->number_of_bathroom=request('numberOfBathRoom');
+        $apartment->floor=request('numberOfFloor');
+        $apartment->price=request('price');
+        $apartment->traget=request('target');
+        $apartment->save();
+
         return response()->json(
             [
                 'response'=>"Success, Thank you for the new Property"
@@ -78,6 +98,10 @@ class HomeController extends Controller
 
     public function madeRentSell()
     {
+        Apartment::where('id',request('apartmentId'))
+            ->update(['is_deal_done'=>true,
+                'customer_id'=>request('userId')
+        ]);
 
         return response()->json(
             [
